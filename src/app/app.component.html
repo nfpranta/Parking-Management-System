@@ -1,14 +1,14 @@
-<div class="container">
-  <h3 class="d-flex justify-content-center">Parking Management System </h3>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-    <div class="container">
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        <a class="nav-link" routerLink="/parking-table" routerLinkActive="active">Parking List</a>
-        <a class="nav-link" routerLink="/parking-form" routerLinkActive="active">Add Vehicle</a>
-      </div>
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark  mb-4">
+    <h3 class="d-flex justify-content-center">Parking Management System </h3>
+
+    <div class="navbar-nav">
+      <a class="nav-link dashboard" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a class="nav-link list" routerLink="/parking-table" routerLinkActive="active">Parking List</a>
+      <button type="button" class="btn btn-light" routerLink="/parking-form" routerLinkActive="active">Add
+        Vehicle</button>
     </div>
   </nav>
-
-  <router-outlet></router-outlet>
-</div>
+  <div class="container mt-4">
+    <router-outlet></router-outlet>
+  </div>
