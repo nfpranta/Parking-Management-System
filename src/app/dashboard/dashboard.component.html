@@ -1,0 +1,64 @@
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="dateFilter">Filter by Date:</label>
+            <input type="date" id="dateFilter" class="form-control" (change)="onDateChange($event)">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Total Cars Parked</h5>
+                <p class="card-text display-4">{{ totalCarsParked$ | async }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Empty Slots</h5>
+                <p class="card-text display-4">{{ emptySlots$ | async }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card bg-warning text-white">
+
+                <h5 class="card-title">Vehicle Types</h5>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            *ngFor="let type of (vehicleTypeCounts$ | async) | keyvalue">
+                            {{ type.key }}
+                            <span class="badge bg-primary rounded-pill">{{ type.value }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card bg-danger text-white">
+
+                <h5 class="card-title">Vehicles Parked Over 2 Hours</h5>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let vehicle of vehiclesParkedOverTwoHours$ | async">
+                            {{ vehicle.licenseNumber }} - {{ vehicle.vehicleType }}
+                            <br>
+                            <small>Parked since: {{ vehicle.entryDateTime | date:'medium' }}</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

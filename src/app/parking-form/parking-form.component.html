@@ -1,0 +1,76 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Parking Management Form</h4>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="onSubmit()" #parkingForm="ngForm">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="licenseNumber" class="form-label">Vehicle License Number</label>
+                        <input type="text" class="form-control" id="licenseNumber"
+                            [(ngModel)]="parkingRecord.licenseNumber" name="licenseNumber" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="vehicleType" class="form-label">Vehicle Type</label>
+                        <select class="form-select" id="vehicleType" [(ngModel)]="parkingRecord.vehicleType"
+                            name="vehicleType" required>
+                            <option value="Microbus">Microbus</option>
+                            <option value="Car">Car</option>
+                            <option value="Truck">Truck</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="ownerName" class="form-label">Vehicle Owner Name</label>
+                        <input type="text" class="form-control" id="ownerName" [(ngModel)]="parkingRecord.ownerName"
+                            name="ownerName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="ownerPhone" class="form-label">Vehicle Owner Phone</label>
+                        <input type="tel" class="form-control" id="ownerPhone" [(ngModel)]="parkingRecord.ownerPhone"
+                            name="ownerPhone" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status" [(ngModel)]="parkingRecord.status" name="status" required>
+                        <option value="Parked">Parked</option>
+                        <option value="Exited">Exited</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="ownerAddress" class="form-label">Car Owner Address</label>
+                    <textarea class="form-control" id="ownerAddress" [(ngModel)]="parkingRecord.ownerAddress"
+                        name="ownerAddress" rows="3" required></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="entryDateTime" class="form-label">Entry Date and Time</label>
+                        <input type="datetime-local" class="form-control" id="entryDateTime"
+                            [(ngModel)]="parkingRecord.entryDateTime" name="entryDateTime" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="exitDateTime" class="form-label">Exit Date and Time</label>
+                        <input type="datetime-local" class="form-control" id="exitDateTime"
+                            [(ngModel)]="parkingRecord.exitDateTime" name="exitDateTime">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="parkingCharge" class="form-label">Parking Charge</label>
+                    <input type="number" class="form-control" id="parkingCharge"
+                        [(ngModel)]="parkingRecord.parkingCharge" name="parkingCharge" step="0.01" min="0">
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="!parkingForm.form.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

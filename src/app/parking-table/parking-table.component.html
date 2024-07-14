@@ -1,0 +1,59 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Parking Records</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Owner Name</th>
+                            <th>Vehicle Type</th>
+                            <th>License Number</th>
+                            <th>Entry Time</th>
+                            <th>Exit Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let record of parkingRecords">
+                            <ng-container *ngIf="editingRecord?.id !== record.id; else editMode">
+                                <td>{{ record.ownerName }}</td>
+                                <td>{{ record.vehicleType }}</td>
+                                <td>{{ record.licenseNumber }}</td>
+                                <td>{{ record.entryDateTime | date:'HH:mm' }}</td>
+                                <td>{{ record.exitDateTime ? (record.exitDateTime | date:'HH:mm') : 'N/A' }}</td>
+                                <td>{{ record.status }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" (click)="startEditing(record)">Edit</button>
+                                </td>
+                            </ng-container>
+                            <ng-template #editMode>
+                                <ng-container *ngIf="editingRecord as editing">
+                                    <td><input class="form-control" [(ngModel)]="editing.ownerName"></td>
+                                    <td><input class="form-control" [(ngModel)]="editing.vehicleType"></td>
+                                    <td><input class="form-control" [(ngModel)]="editing.licenseNumber"></td>
+                                    <td><input class="form-control" type="time" [(ngModel)]="editing.entryDateTime">
+                                    </td>
+                                    <td><input class="form-control" type="time" [(ngModel)]="editing.exitDateTime"></td>
+                                    <td>
+                                        <select class="form-select" [(ngModel)]="editing.status">
+                                            <option value="Parked">Parked</option>
+                                            <option value="Exited">Exited</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success me-1" (click)="saveEdit()">Save</button>
+                                        <button class="btn btn-sm btn-danger" (click)="cancelEdit()">Cancel</button>
+                                    </td>
+                                </ng-container>
+                            </ng-template>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
